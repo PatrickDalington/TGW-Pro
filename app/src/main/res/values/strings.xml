@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">TGW Pro</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="terms"><u>terms and condition</u></string>
+    <string name="terms_of_payment"><u>terms of payment?</u></string>
+    <string name="intro_fyi">Make sure that all information provided matches your goverment valid ID.</string>
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
+</resources>

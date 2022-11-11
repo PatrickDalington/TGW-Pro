@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="170dp"
+    android:background="@color/purple_200"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:padding="10dp"
+    >
+
+
+  <TextView
+        android:id="@+id/nav_header_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:text="TGW PRO"
+        android:textColor="#DDFFFFFF"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:fontFamily="sans-serif-condensed"
+
+        />
+
+
+
+</RelativeLayout>

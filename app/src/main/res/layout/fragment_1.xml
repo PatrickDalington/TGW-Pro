@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".intro.Fragment1">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/pt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"
+        android:text="TGW PROMOTERS"
+        android:textColor="@color/purple_200"
+        android:textSize="25sp" />
+
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:src="@drawable/people"
+        android:layout_below="@id/pt"
+        android:layout_marginTop="80dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/pi"/>
+
+
+    <TextView
+        android:id="@+id/pd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pi"
+        android:gravity="center_horizontal"
+        android:padding="10dp"
+        android:layout_marginTop="30dp"
+        android:text="Joining the set of promoters that make up to 10k the first week of signing up. Click the button below to see instructions on how to make this happen."
+        android:textColor="#C57603"
+        android:textSize="16sp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pd"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/ins"
+        android:text="Instruction" />
+
+
+    </RelativeLayout>
+
+</FrameLayout>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+   <item
+       android:id="@+id/dashboard1"
+       android:title="Available"
+       android:icon="@drawable/dashboard_foreground"/>
+        <item
+            android:id="@+id/event1"
+            android:icon="@drawable/event_foreground"
+            android:title="Reserved" />
+
+
+
+        <item
+            android:id="@+id/feeds1"
+            android:icon="@drawable/search"
+            android:title="Done" />
+
+
+
+    </group>
+
+    <item
+        android:title="Account">
+        <menu>
+            <item
+                android:id="@+id/profile"
+                android:title="My money"
+                android:icon="@drawable/profile_icon"
+                />
+
+
+            <item
+                android:id="@+id/poll_box"
+                android:icon="@drawable/mail"
+                android:title="Messages" />
+
+            <item
+                android:id="@+id/settings"
+                android:icon="@drawable/settings"
+                android:title="Settings" />
+        </menu>
+    </item>
+
+    <item
+        android:title="Others">
+        <menu>
+            <item
+                android:id="@+id/share"
+                android:title="Share"
+                android:icon="@drawable/share_icon"
+                />
+
+            <item android:title="Check for update"
+                android:id="@+id/update"
+                android:icon="@drawable/update_icon"
+                />
+
+            <item
+                android:id="@+id/feedback"
+                android:icon="@drawable/feeds_foreground"
+                android:title="Feedback" />
+            <item
+                android:id="@+id/logout1"
+                android:title="Logout"
+                android:icon="@drawable/logout_foreground"/>
+        </menu>
+    </item>
+
+</menu>

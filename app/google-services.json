@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "231760177229",
+    "firebase_url": "https://tgw-pro-default-rtdb.firebaseio.com",
+    "project_id": "tgw-pro",
+    "storage_bucket": "tgw-pro.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:231760177229:android:62a402f06e280007245404",
+        "android_client_info": {
+          "package_name": "com.tgw.tgwpro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "231760177229-ml8dfpf252t4ic303bs5o4i5vemlp3nk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tgw.tgwpro",
+            "certificate_hash": "a4b26eacdba64eba6d84eda0c8737dd0432d6429"
+          }
+        },
+        {
+          "client_id": "231760177229-hr9frs4dltqkl1okjl44iogcrh5pna5h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCi5benoymq-LtWsa-0LCCeKyH2ebyud10"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "231760177229-hr9frs4dltqkl1okjl44iogcrh5pna5h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
