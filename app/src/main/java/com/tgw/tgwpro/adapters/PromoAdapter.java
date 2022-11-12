@@ -236,7 +236,7 @@ public class PromoAdapter extends RecyclerView.Adapter<PromoAdapter.ViewHolder> 
 
                     Date event_date = dateFormat.parse(EVENT_DATE_TIME);
                     Date current_date = new Date();
-                    char a = 'b';
+
                     
 
                     if (!current_date.after(event_date)) {
