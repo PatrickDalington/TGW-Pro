@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -84,8 +85,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         firebaseUser = auth.getCurrentUser();
 
         if (auth.getCurrentUser() == null){
-            Intent i =new Intent(getApplicationContext(), IntroSlider.class);
-            startActivity(i);
+           // Intent i =new Intent(getApplicationContext(), IntroSlider.class);
+            //startActivity(i);
         }
 
 
@@ -186,6 +187,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+            Toast.makeText(MainActivity.this, "i am clicked", Toast.LENGTH_SHORT).show();
+
+
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -195,15 +199,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onStart() {
         super.onStart();
         auth1 = FirebaseAuth.getInstance();
-        if (auth1.getCurrentUser() == null){
+      /* if (auth1.getCurrentUser() == null){
             Intent i =new Intent(getApplicationContext(), IntroSlider.class);
             startActivity(i);
         }
-
+*/
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        //this is to get id for the various menu items
+        if (item.getItemId() == R.id.myDashboard) {
+            startActivity(new Intent(MainActivity.this, DashBoard_Activity.class));
+        } else {
+            return false;
+        }
         return true;
     }
 }

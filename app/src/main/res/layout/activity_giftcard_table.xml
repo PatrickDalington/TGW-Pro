@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".main.Income_Table_Activity">
+    <View
+        android:id="@+id/gLine_6"
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="@color/purple_700"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:layout_marginTop="3dp"
+        android:layout_marginStart="2dp"
+        android:id="@+id/gtext_taskId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="task id"
+        app:layout_constraintStart_toEndOf="@id/gLine_6"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/black"/>
+    <View
+
+        android:elevation="2dp"
+        android:id="@+id/gLine_7"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/purple_700"
+        app:layout_constraintBottom_toBottomOf="@id/gtext_rewardT"
+        app:layout_constraintStart_toStartOf="parent"/>
+    <View
+        android:id="@+id/gLine_1"
+        android:layout_marginStart="6dp"
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="@color/purple_700"
+        app:layout_constraintStart_toEndOf="@id/gtext_taskId"/>
+
+    <TextView
+        android:layout_marginTop="3dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintStart_toEndOf="@id/gLine_1"
+        android:id="@+id/gtext_taskTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="task title"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/black"/>
+    <View
+        android:id="@+id/gLine_2"
+        android:layout_marginStart="6dp"
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="@color/purple_700"
+        app:layout_constraintStart_toEndOf="@id/gtext_taskTitle"/>
+
+    <TextView
+        android:paddingBottom="5dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintStart_toEndOf="@id/gLine_2"
+        android:id="@+id/gtext_rewardT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="rewarded\n     title"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/black"/>
+    <View
+        android:id="@+id/gLine_3"
+        android:layout_marginStart="4dp"
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="@color/purple_700"
+        app:layout_constraintStart_toEndOf="@id/gtext_rewardT"/>
+
+    <TextView
+        android:layout_marginStart="4dp"
+        app:layout_constraintStart_toEndOf="@id/gLine_3"
+        android:id="@+id/gtext_statusT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="status of \n   task"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/black"/>
+    <View
+        android:id="@+id/gLine_4"
+        android:layout_marginStart="4dp"
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="@color/purple_700"
+        app:layout_constraintStart_toEndOf="@id/gtext_statusT"/>
+    <TextView
+        android:layout_marginStart="4dp"
+        app:layout_constraintStart_toEndOf="@id/gLine_4"
+        android:id="@+id/gtext_redeemC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="redeem \n  code"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/black"/>
+
+    <View
+        android:id="@+id/gLine_5"
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="@color/purple_700"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tastid_rec"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="@id/gLine_6"
+        app:layout_constraintTop_toBottomOf="@id/gLine_7"
+        app:layout_constraintEnd_toStartOf="@id/gLine_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/purple_700"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tasktittle_rec"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="@id/gLine_1"
+        app:layout_constraintTop_toBottomOf="@id/gLine_7"
+        app:layout_constraintEnd_toStartOf="@id/gLine_2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/purple_700"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="@id/gLine_2"
+        app:layout_constraintTop_toBottomOf="@id/gLine_7"
+        app:layout_constraintEnd_toStartOf="@id/gLine_3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/purple_700"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/supposedE_rec"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="@id/gLine_3"
+        app:layout_constraintTop_toBottomOf="@id/gLine_7"
+        app:layout_constraintEnd_toStartOf="@id/gLine_4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/purple_700"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="@id/gLine_4"
+        app:layout_constraintTop_toBottomOf="@id/gLine_7"
+        app:layout_constraintEnd_toStartOf="@id/gLine_5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/purple_700"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

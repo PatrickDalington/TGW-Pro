@@ -16,7 +16,7 @@
         <item
             android:id="@+id/feeds1"
             android:icon="@drawable/search"
-            android:title="Done" />
+            android:title="Search" />
 
 
 
@@ -26,8 +26,8 @@
         android:title="Account">
         <menu>
             <item
-                android:id="@+id/profile"
-                android:title="My money"
+                android:id="@+id/myDashboard"
+                android:title="My Dashboard"
                 android:icon="@drawable/profile_icon"
                 />
 
