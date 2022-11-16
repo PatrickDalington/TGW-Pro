@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -58,6 +60,8 @@ public class Login extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
     DatabaseReference userRef, refIdRef;
+    FirebaseUser user;
+    private String userAvailability="";
 
     private static final int  MAX = 26;
     @Override
@@ -66,6 +70,7 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        user=firebaseAuth.getCurrentUser();
 
         phoneNumber = findViewById(R.id.phone);
         code = findViewById(R.id.code);
@@ -117,14 +122,9 @@ public class Login extends AppCompatActivity {
                 phoneNumber.setError("Phone number should not start with zero");
                 phoneNumber.requestFocus();
             } else {
-                completePhoneNumber = "+234" + phoneNumber.getText().toString();
-                startTimer();
-                getCode.setEnabled(false);
-                Runnable runnable = () -> getCode.setEnabled(true);
-                Handler handler = new Handler();
-                handler.postDelayed(runnable,60000);
-                timmer.setVisibility(View.VISIBLE);
-                sendVerificationCode(completePhoneNumber);
+
+                checkUserAvailability("+234" + phoneNumber.getText().toString());
+
             }
 
         });
@@ -179,24 +179,67 @@ public class Login extends AppCompatActivity {
     }
 
     public void checkUserAvailability(String phoneNumber){
-        userRef = FirebaseDatabase.getInstance().getReference("Users");
-        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    for (DataSnapshot dataSnapshot: snapshot.getChildren()){
-                        User user = dataSnapshot.getValue(User.class);
+
+            userRef = FirebaseDatabase.getInstance().getReference("Users");
+            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()) {
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                            // User user = dataSnapshot.getValue(User.class);
+                                Log.d("Login", dataSnapshot.child("Phone").getValue().toString().trim());
+                               if (dataSnapshot.child("Phone").getValue().toString().trim().equals(phoneNumber)) {
+                                    Log.d("Login", "yes");
+                                    userAvailability="yes";
+                                    break;
+                                }
+
 
 
                         }
+
+                        if(user!=null || userAvailability.equalsIgnoreCase("yes")) {
+
+                            completePhoneNumber = phoneNumber;
+                            startTimer();
+                            getCode.setEnabled(false);
+                            Runnable runnable = () -> getCode.setEnabled(true);
+                            Handler handler = new Handler();
+                            handler.postDelayed(runnable, 60000);
+                            timmer.setVisibility(View.VISIBLE);
+                            sendVerificationCode(completePhoneNumber);
+                        }else {
+                            AlertDialog.Builder alertDialog=new AlertDialog.Builder(Login.this);
+                            alertDialog.setMessage("sorry you are not registered yet click register button below to continue");
+                            alertDialog.setPositiveButton("Register", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                }
+                            });
+                            alertDialog.setNeutralButton("cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.dismiss();
+                                }
+                            });
+                            Dialog dialog=alertDialog.create();
+                            dialog.show();
+
+
+
+                        }
+                    } else {
+                        Log.d("Login", "yes");
+                    }
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
+                }
+            });
+
     }
 
     static String getRandAlpha(int n)
