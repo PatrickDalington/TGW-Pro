@@ -59,12 +59,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     TabLayout tabLayout;
     TextView greeting, gift, wallet, lName,testimony;
     String [] test = {"  Philip: I am greatful to download this app   ",
-                    "   Diana: This app is life saving   ",
-                    "   Paul: I just made 1000 naira in 2hrs wow!!!   ",
-                    "   Chiamaka: Cool side hustle   ",
-                    "   Prisca: OMG!!! TGW you are the best!   ",
-                    "   Patrick: I love you Tonia!   ",
-                    "   Ruth: Thank you TGW!!!   "};
+            "   Diana: This app is life saving   ",
+            "   Paul: I just made 1000 naira in 2hrs wow!!!   ",
+            "   Chiamaka: Cool side hustle   ",
+            "   Prisca: OMG!!! TGW you are the best!   ",
+            "   Patrick: I love you Tonia!   ",
+            "   Ruth: Thank you TGW!!!   "};
 
 
     DatabaseReference userRef;
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         firebaseUser = auth.getCurrentUser();
 
         if (auth.getCurrentUser() == null){
-           // Intent i =new Intent(getApplicationContext(), IntroSlider.class);
+            // Intent i =new Intent(getApplicationContext(), IntroSlider.class);
             //startActivity(i);
         }
 
@@ -199,11 +199,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onStart() {
         super.onStart();
         auth1 = FirebaseAuth.getInstance();
-      /* if (auth1.getCurrentUser() == null){
+        if (auth1.getCurrentUser() == null){
             Intent i =new Intent(getApplicationContext(), IntroSlider.class);
             startActivity(i);
         }
-*/
+
     }
 
     @Override

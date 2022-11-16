@@ -17,13 +17,16 @@
             android:name=".main.Network_Activity"
             android:exported="false" />
         <activity
-            android:name=".main.Giftcard_Table_Activity"
-            android:exported="false" />
-        <activity
             android:name=".main.Income_Table_Activity"
             android:exported="false" />
         <activity
+            android:name=".main.Giftcard_Table_Activity"
+            android:exported="false" />
+        <activity
             android:name=".main.DashBoard_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".main.Table"
             android:exported="false" />
         <activity
             android:name=".main.TaskActivity"
@@ -36,6 +39,9 @@
             android:exported="false" />
         <activity
             android:name=".register.StateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".register.Login"
             android:exported="false" />
         <activity
             android:name=".register.WelcomePage"

@@ -23,7 +23,7 @@ public class TaskActivity extends AppCompatActivity {
     ViewPager2 viewPager;
     FragmentAdapter2 fragmentAdapter2;
     TabLayout tabLayout;
-    String description, title, imageUrl, taskType, taskId, about, howTo, estAmount;
+    String description, title, imageUrl, taskType, taskId, about, howTo, estAmount, rewardType;
     Intent intent;
     Bundle bundle;
 
@@ -55,6 +55,7 @@ public class TaskActivity extends AppCompatActivity {
             about = intent.getStringExtra("about");
             howTo = intent.getStringExtra("howTo");
             estAmount = intent.getStringExtra("estAmount");
+            rewardType = intent.getStringExtra("rewardType");
 
             Glide.with(this).load(imageUrl).into(companyLogo);
             titleCom.setText(title);
@@ -108,6 +109,7 @@ public class TaskActivity extends AppCompatActivity {
         bundle.putString("taskId", taskId);
         bundle.putString("howTo", howTo);
         bundle.putString("estAmount", estAmount);
+        bundle.putString("rewardType", rewardType);
 
         return bundle;
     }

@@ -33,7 +33,7 @@ public class WelcomePage extends AppCompatActivity {
     Button con;
     EditText lName,fName;
     CheckBox checkBox;
-    TextView errorText;
+    TextView errorText, login;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +45,7 @@ public class WelcomePage extends AppCompatActivity {
         lName = findViewById(R.id.lName);
         checkBox = findViewById(R.id.check);
         errorText = findViewById(R.id.bb);
+        login = findViewById(R.id.login);
 
 
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -81,6 +82,12 @@ public class WelcomePage extends AppCompatActivity {
                 errorText.setText("Have you read and agree to the terms and condition?");
             }
 
+        });
+
+
+        login.setOnClickListener(v->{
+            Intent intent = new Intent(WelcomePage.this, Login.class);
+            startActivity(intent);
         });
 
 

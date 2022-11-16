@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar"
         android:layout_marginTop="10dp"
+        android:id="@+id/rel"
         android:orientation="vertical">
 
         <TextView
@@ -52,14 +53,14 @@
             android:id="@+id/fName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/subheading"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="10dp"
-            android:layout_below="@id/subheading"
-            android:hint="First name"
-            android:textColorHint="#000"
             android:background="@drawable/edit_backgroud"
-            android:textColor="@color/black" />
+            android:hint="First name"
+            android:textColor="@color/black"
+            android:textColorHint="#000" />
 
 
         <EditText
@@ -127,4 +128,17 @@
             android:id="@+id/con"/>
 
     </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login"
+        android:layout_below="@id/rel"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/login"
+        android:textStyle="bold"
+        android:textColor="#603A02"/>
 </RelativeLayout>

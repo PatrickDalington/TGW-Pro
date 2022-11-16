@@ -169,7 +169,9 @@ public class PromoAdapter extends RecyclerView.Adapter<PromoAdapter.ViewHolder> 
                     intent.putExtra("about", promo_model.getAbout());
                     intent.putExtra("description", promo_model.getDescription());
                     intent.putExtra("howTo", promo_model.getHow_to_earn());
-                    intent.putExtra("estAmount", promo_model.getEst_amount());
+                    intent.putExtra("estAmount", promo_model.getReward());
+                    intent.putExtra("rewardType", promo_model.getRewardType());
+
 
                 }else if (promo_model.getPromo_task().equals("Share")){
                     taskType = "Invite";
@@ -179,7 +181,8 @@ public class PromoAdapter extends RecyclerView.Adapter<PromoAdapter.ViewHolder> 
                     intent.putExtra("title", promo_model.getTitle());
                     intent.putExtra("description", promo_model.getDescription());
                     intent.putExtra("howTo", promo_model.getHow_to_earn());
-                    intent.putExtra("estAmount", promo_model.getEst_amount());
+                    intent.putExtra("estAmount", promo_model.getReward());
+                    intent.putExtra("rewardType", promo_model.getRewardType());
                 }else{
                     taskType = "Invite";
                     intent.putExtra("taskType", taskType);
@@ -189,7 +192,8 @@ public class PromoAdapter extends RecyclerView.Adapter<PromoAdapter.ViewHolder> 
                     intent.putExtra("about", promo_model.getAbout());
                     intent.putExtra("description", promo_model.getDescription());
                     intent.putExtra("howTo", promo_model.getHow_to_earn());
-                    intent.putExtra("estAmount", promo_model.getEst_amount());
+                    intent.putExtra("estAmount", promo_model.getReward());
+                    intent.putExtra("rewardType", promo_model.getRewardType());
                 }
                 context.startActivity(intent);
 
