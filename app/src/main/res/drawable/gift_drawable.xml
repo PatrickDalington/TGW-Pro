@@ -4,7 +4,7 @@
     android:height="46dp"
     android:viewportWidth="115.09"
     android:viewportHeight="122.88"
-   >
+    >
     <path
         android:fillColor="@android:color/holo_purple"
         android:fillType="evenOdd"

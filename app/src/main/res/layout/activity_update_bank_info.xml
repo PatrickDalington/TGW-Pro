@@ -65,7 +65,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="10dp"
-            android:background="@drawable/edit_backgroud"
+            android:background="@drawable/edit_backgroud1"
             android:completionThreshold="1"
             android:hint="Bank name"
             android:textColor="@color/black"
@@ -82,7 +82,7 @@
             android:hint="Account number"
             android:layout_below="@id/banks"
             android:textColorHint="#000"
-            android:background="@drawable/edit_backgroud"
+            android:background="@drawable/edit_backgroud1"
             android:textColor="@color/black" />
 
         <LinearLayout

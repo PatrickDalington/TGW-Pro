@@ -144,6 +144,7 @@
         app:layout_constraintEnd_toStartOf="@id/gLine_4"
         app:layout_constraintBottom_toBottomOf="parent"
         android:background="@color/purple_700"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/status"
         android:layout_width="wrap_content"

@@ -59,7 +59,7 @@
             android:layout_marginTop="20dp"
             android:maxLines="1"
             android:layout_marginRight="10dp"
-            android:background="@drawable/edit_backgroud"
+            android:background="@drawable/edit_background"
             android:hint="State"
             android:completionThreshold="1"
             android:textColor="@color/black"

@@ -42,7 +42,7 @@ public class DashBoard_Activity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.naira_card) {
-            startActivity(new Intent(DashBoard_Activity.this, Income_Table_Activity.class));
+            startActivity(new Intent(DashBoard_Activity.this, Table.class));
         } else if (view.getId() == R.id.mgift_card) {
             startActivity(new Intent(DashBoard_Activity.this, Giftcard_Table_Activity.class));
         } else if (view.getId() == R.id.network_card) {

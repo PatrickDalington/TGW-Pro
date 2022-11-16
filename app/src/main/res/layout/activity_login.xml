@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".register.PhoneActivity">
+    tools:context=".register.Login">
 
 
     <androidx.appcompat.widget.Toolbar
@@ -49,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="Lets setup your login credentials"
+            android:text="Login"
             android:textColor="#784902"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -61,7 +61,7 @@
             android:layout_below="@id/heading"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="50dp"
-            android:text="Your phone number will be use to log you into your account. A code will be sent to your phone. Please make sure your phone number is active."
+            android:text="Enter your registered phone number below and request for code to login"
             android:textColor="@color/black" />
 
         <LinearLayout
@@ -154,20 +154,20 @@
             android:visibility="gone" />
 
         <Button
-            android:id="@+id/signup"
+            android:id="@+id/login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/bb"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
             android:layout_marginRight="10dp"
-            android:text="Signup" />
+            android:text="Login" />
 
         <TextView
             android:id="@+id/note"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/signup"
+            android:layout_below="@id/login"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:gravity="center"
