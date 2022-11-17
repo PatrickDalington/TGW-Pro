@@ -214,7 +214,7 @@ public class Login extends AppCompatActivity {
                             alertDialog.setPositiveButton("Register", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-
+                                    startActivity(new Intent(Login.this,WelcomePage.class));
                                 }
                             });
                             alertDialog.setNeutralButton("cancel", new DialogInterface.OnClickListener() {

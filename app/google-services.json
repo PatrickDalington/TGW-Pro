@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "231760177229-3i860if6d0dm0ae17pk67q7kp7f14pfg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tgw.tgwpro",
+            "certificate_hash": "fe2d8e932956ccf5a48158c041b155776910ebd0"
+          }
+        },
+        {
           "client_id": "231760177229-ml8dfpf252t4ic303bs5o4i5vemlp3nk.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -22,6 +30,35 @@
             "certificate_hash": "a4b26eacdba64eba6d84eda0c8737dd0432d6429"
           }
         },
+        {
+          "client_id": "231760177229-hr9frs4dltqkl1okjl44iogcrh5pna5h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCi5benoymq-LtWsa-0LCCeKyH2ebyud10"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "231760177229-hr9frs4dltqkl1okjl44iogcrh5pna5h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:231760177229:android:0e9bee2d16e70879245404",
+        "android_client_info": {
+          "package_name": "com.tgw.tgwprobo"
+        }
+      },
+      "oauth_client": [
         {
           "client_id": "231760177229-hr9frs4dltqkl1okjl44iogcrh5pna5h.apps.googleusercontent.com",
           "client_type": 3

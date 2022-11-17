@@ -36,6 +36,7 @@ import com.tgw.tgwpro.fragments.Home;
 import com.tgw.tgwpro.fragments.TGW;
 import com.tgw.tgwpro.intro.IntroSlider;
 import com.tgw.tgwpro.models.User;
+import com.tgw.tgwpro.register.Login;
 import com.tgw.tgwpro.register.WelcomePage;
 
 import java.util.Calendar;
@@ -211,7 +212,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //this is to get id for the various menu items
         if (item.getItemId() == R.id.myDashboard) {
             startActivity(new Intent(MainActivity.this, DashBoard_Activity.class));
-        } else {
+        }if (item.getItemId()== R.id.logout1) {
+            if(firebaseUser!=null){
+                auth.signOut();
+                startActivity(new Intent(MainActivity.this,WelcomePage.class));
+            }
+        }else
+         {
             return false;
         }
         return true;
