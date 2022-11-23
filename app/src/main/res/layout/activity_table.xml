@@ -8,36 +8,171 @@
     tools:context=".main.Table">
 
 
-    <TextView
+    <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Account Information"
-        android:textSize="18sp"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="40dp"
-        android:gravity="center_horizontal"
-        android:textColor="#000"
-        android:textStyle="bold"
-        android:id="@+id/title"/>
+        android:id="@+id/toolbar">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/arrow_back"
+                android:layout_marginTop="17dp"
+                android:id="@+id/back_arrow"/>
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="40dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="Account Information"
+                android:textColor="#000"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
 
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/info"
+                android:layout_marginTop="11dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="5dp"
+                android:id="@+id/info"/>
+
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_below="@id/title">
+        android:layout_below="@id/toolbar"
+        android:id="@+id/linear"
+        android:orientation="horizontal">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler"
+
+
+
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"
-            tools:listitem="@layout/table_list_items" />
+            android:background="@drawable/edit_backgroud2"
+            android:text=" W "
+            android:textSize="12sp"
+            android:gravity="center_vertical"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="4dp"
+            android:textColor="#fff"
+            android:id="@+id/txt"/>
 
-    </HorizontalScrollView>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/naira_drawable_small"
+            android:layout_toEndOf="@id/txt"
+            android:layout_centerVertical="true"
+            android:id="@+id/naira"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/l"
+            android:layout_toEndOf="@id/naira"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="40sp"
+                android:text="57,000"
+                android:layout_toRightOf="@id/txt"
+                android:textColor="#000"
+                android:id="@+id/balance"
+                 />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/linear"
+        android:layout_alignParentEnd="true"
+        android:gravity="end"
+        android:id="@+id/rel">
+
+        <View
+            android:layout_width="40dp"
+            android:layout_height="6dp"
+            android:background="#F3EFEF"
+            android:layout_marginEnd="5dp"
+            android:layout_gravity="center_vertical"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_backgroud1"
+            android:text=" PW "
+            android:textSize="12sp"
+            android:gravity="center_vertical"
+            android:layout_marginEnd="4dp"
+            android:textColor="#fff"
+            android:id="@+id/txt2"/>
+
+        <TextView
+            android:id="@+id/cum_acc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="₦5,200"
+            android:textColor="#814E03"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="40dp"
+            android:layout_height="6dp"
+            android:background="#F3EFEF"
+            android:layout_marginEnd="5dp"
+            android:layout_gravity="center_vertical"/>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Withdraw"
+            android:textSize="11sp"
+            android:layout_marginRight="6dp"/>
+
+    </LinearLayout>
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabTextColor="@color/black"
+        android:layout_below="@id/rel"
+        android:fadingEdge="horizontal"/>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tab_layout"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+
 
 </RelativeLayout>

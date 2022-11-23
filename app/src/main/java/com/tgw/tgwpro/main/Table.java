@@ -1,74 +1,79 @@
 package com.tgw.tgwpro.main;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import static android.graphics.Color.GREEN;
+import static android.graphics.Color.WHITE;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.ViewPager2;
+
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.tgw.tgwpro.R;
-import com.tgw.tgwpro.adapters.CashTableAdapter;
-import com.tgw.tgwpro.models.Cash_Model;
-
-import java.util.ArrayList;
+import com.tgw.tgwpro.adapters.FragmentAdapter2;
+import com.tgw.tgwpro.fragments.Account;
+import com.tgw.tgwpro.fragments.Transactions;
 
 public class Table extends AppCompatActivity {
 
-    RecyclerView recyclerView;
-    CashTableAdapter adapter;
-    Cash_Model model;
-    DatabaseReference ref;
-    ArrayList<Cash_Model> list;
-    FirebaseUser firebaseUser;
+
+
+    ViewPager2 viewPager;
+    FragmentAdapter2 fragmentAdapter2;
+    TabLayout tabLayout;
+    TextView txt,txt2;
+
+    private static final int RED = 0xffFF8080;
+    private static final int BLUE = 0xff8080FF;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_table);
 
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        recyclerView = findViewById(R.id.recycler);
 
-        LinearLayoutManager lm = new LinearLayoutManager(Table.this,LinearLayoutManager.VERTICAL,false);
-        recyclerView.setLayoutManager(lm);
+        viewPager = findViewById (R.id.view_pager);
+        tabLayout = findViewById(R.id.tab_layout);
+        txt = findViewById(R.id.txt);
+        txt2 = findViewById(R.id.txt2);
 
-        loadTable();
+
+
+        ValueAnimator colorAnim = ObjectAnimator.ofInt(txt, "backgroundColor", WHITE, Color.parseColor("#037107"));
+        colorAnim.setDuration(2000);
+        colorAnim.setEvaluator(new ArgbEvaluator());
+        colorAnim.setRepeatCount(ValueAnimator.INFINITE);
+        colorAnim.setRepeatMode(ValueAnimator.REVERSE);
+        colorAnim.start();
+
+        ValueAnimator colorAnim2 = ObjectAnimator.ofInt(txt2, "backgroundColor", WHITE, Color.parseColor("#CD7C03"));
+        colorAnim2.setDuration(4000);
+        colorAnim2.setEvaluator(new ArgbEvaluator());
+        colorAnim2.setRepeatCount(ValueAnimator.INFINITE);
+        colorAnim2.setRepeatMode(ValueAnimator.REVERSE);
+        colorAnim2.start();
+
+        fragmentAdapter2 = new FragmentAdapter2(getSupportFragmentManager(), getLifecycle());
+        fragmentAdapter2.addFragment(new Account());
+        fragmentAdapter2.addFragment(new Transactions());
+
+        viewPager.setAdapter(fragmentAdapter2);
+        new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
+            if (position ==0){
+                tab.setText("Account");
+            }else if (position ==1){
+                tab.setText("Transactions");
+            }
+        }).attach();
+
+        viewPager.requestDisallowInterceptTouchEvent(true);
+
     }
 
-    private void loadTable(){
-        list = new ArrayList<>();
-        ref = FirebaseDatabase.getInstance().getReference("Payments_Record").child(firebaseUser.getUid())
-                .child("cash");
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    list.clear();
-
-                    for (DataSnapshot dataSnapshot:snapshot.getChildren()){
-                        model = dataSnapshot.getValue(Cash_Model.class);
-                        list.add(model);
-                    }
-
-                    adapter = new CashTableAdapter(Table.this,list);
-                    recyclerView.setAdapter(adapter);
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
 }

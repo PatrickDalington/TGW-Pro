@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -98,15 +99,15 @@ public class CashTableAdapter extends RecyclerView.Adapter<CashTableAdapter.View
 
             if (model.isCashable()){
 
-                holder.cashable.setTextColor(Color.parseColor("#CC7B04"));
-                holder.cashable.setCompoundDrawablesRelativeWithIntrinsicBounds(null,null,null,
-                        AppCompatResources.getDrawable(context,R.drawable.edit_backgroud1));
+                holder.cashable.setTextColor(Color.WHITE);
+                //holder.cashable.setCompoundDrawablesRelativeWithIntrinsicBounds(null,null,null,
+                        //AppCompatResources.getDrawable(context,R.drawable.edit_backgroud1));
 
 
             }else{
-                holder.cashable.setTextColor(Color.parseColor("#028007"));
-                holder.cashable.setCompoundDrawablesRelativeWithIntrinsicBounds(null,null,AppCompatResources.getDrawable(context,R.drawable.edit_backgroud2),
-                        null);
+                holder.cashable.setTextColor(Color.WHITE);
+               // holder.cashable.setCompoundDrawablesRelativeWithIntrinsicBounds(null,null,AppCompatResources.getDrawable(context,R.drawable.edit_backgroud2),
+                       // null);
             }
         }
 
@@ -120,7 +121,8 @@ public class CashTableAdapter extends RecyclerView.Adapter<CashTableAdapter.View
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView id, name, verification, amount, pay_date, cashable;
+        TextView id, name, verification, amount, pay_date;
+        Button cashable;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@color/white"
@@ -19,10 +20,12 @@
     <TextView
         android:id="@+id/name"
         android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
         android:background="@drawable/table_content_cell_bg"
         android:text="Company's ID"
+        android:maxLines="2"
+        android:ellipsize="end"
         android:textSize="15sp" />
 
     <TextView
@@ -42,7 +45,8 @@
         android:background="@drawable/table_content_cell_bg"
         android:text="Earnings (₦)"
         android:textAlignment="center"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        tools:ignore="RtlCompat" />
 
     <TextView
         android:id="@+id/pay_date"
@@ -53,13 +57,17 @@
         android:text="Pay Date"
         android:textSize="15sp" />
 
-    <TextView
+    <Button
         android:id="@+id/depo"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="top"
-        android:background="@drawable/table_content_cell_bg"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:backgroundTint="#4CAF50"
         android:text="Deposit Cash"
+        android:layout_marginTop="6dp"
+        android:layout_marginStart="6dp"
         android:textAlignment="center"
-        android:textSize="15sp" />
+        android:textSize="13sp"
+        tools:ignore="RtlCompat" />
 </LinearLayout>
