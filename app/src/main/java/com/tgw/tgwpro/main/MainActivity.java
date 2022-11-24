@@ -1,7 +1,12 @@
 package com.tgw.tgwpro.main;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -9,17 +14,26 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -30,6 +44,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.tgw.tgwpro.R;
 import com.tgw.tgwpro.adapters.FragmentAdapter2;
 import com.tgw.tgwpro.fragments.Home;
@@ -39,9 +56,16 @@ import com.tgw.tgwpro.models.User;
 import com.tgw.tgwpro.register.Login;
 import com.tgw.tgwpro.register.WelcomePage;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -51,9 +75,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Window window;
     Animation animation,animation2;
     String title,message,updateURL;
+    private FirebaseStorage firebaseStorage;
+    private StorageReference storageReference;
+    ActivityResultLauncher<Intent>    pickImageFromFolderPermission;
+    private Uri imageUri;
+
     FirebaseUser firebaseUser;
     FirebaseAuth auth,auth1;
-
+    CircleImageView profileImage,imageProfile;
     FragmentActivity listener;
     ViewPager2 viewPager;
     FragmentAdapter2 fragmentAdapter2;
@@ -75,12 +104,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         getWindow().setStatusBarColor(Color.parseColor("#FF9800"));
         setContentView(R.layout.activity_main);
-
+        profileImage=(CircleImageView) findViewById(R.id.profile_image_icon);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled ( true );
+        firebaseStorage=FirebaseStorage.getInstance();
+        storageReference=firebaseStorage.getReference().child("UserProfiles");
+        pickImageFromFolderPermission=registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+                Intent data=result.getData();
+                if(data!=null) {
+                    Uri profileImageUri = data.getData();
+                    imageProfile.setImageURI(profileImageUri);
+                    uploadUserProfile(profileImageUri);
+                    Toast.makeText(MainActivity.this, "collected" + profileImageUri.toString(), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+         profileImage.setOnClickListener(v->{
+             showProfile();
 
+         });
 
         auth = FirebaseAuth.getInstance();
         firebaseUser = auth.getCurrentUser();
@@ -217,10 +263,67 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 auth.signOut();
                 startActivity(new Intent(MainActivity.this,WelcomePage.class));
             }
-        }else
+        }else if(item.getItemId()==R.id.settings){
+            startActivity(new Intent(MainActivity.this,SettingsActivity.class));
+        } else
          {
             return false;
         }
         return true;
     }
+
+
+    public  void showProfile(){
+        Dialog dialog=new Dialog(MainActivity.this);
+        dialog.setContentView(R.layout.profile_layout);
+        dialog.setCanceledOnTouchOutside(true);
+        CircleImageView profile=(CircleImageView) dialog.findViewById(R.id.profile_image_I);
+        imageProfile=profile;
+        Objects.requireNonNull(profile).setOnClickListener(v->{
+            Intent intent=new Intent(Intent.ACTION_OPEN_DOCUMENT);
+            intent.setType("image/*");
+            pickImageFromFolderPermission.launch(Intent.createChooser(intent,"pick image"));
+        });
+
+        dialog.show();
+    }
+private void uploadUserProfile(Uri uri){
+    try {
+        Bitmap bitmap= BitmapFactory.decodeStream(getContentResolver().openInputStream(uri));
+       long time=System.currentTimeMillis();
+       String  imageName ="IMG_"+time;
+        ByteArrayOutputStream byteImage=new ByteArrayOutputStream();
+       bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteImage);
+        storageReference.child(imageName).putBytes(byteImage.toByteArray()).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Toast.makeText(MainActivity.this, "uploaded successfully", Toast.LENGTH_LONG).show();
+                taskSnapshot.getStorage().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        Map<String,Object> imageUpload=new HashMap<>();
+                        imageUpload.put("profileImage",task.getResult().toString());
+                        FirebaseDatabase.getInstance().getReference().child("Users").child(auth.getCurrentUser().getUid()).updateChildren(imageUpload).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Toast.makeText(MainActivity.this, "profile uploaded", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        Log.d("Main", task.getResult().toString());
+                    }
+                });
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(MainActivity.this, "failed", Toast.LENGTH_SHORT).show();
+            }
+        });
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+}
+
 }
